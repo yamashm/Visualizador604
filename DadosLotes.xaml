@@ -1,0 +1,9 @@
+﻿<Window x:Class="Visualizador604.DadosLotes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Dados dos Lotes" Height="332" Width="848" ShowInTaskbar="True" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <TextBox Name="txbDadosLotes"  Margin="10,10,10,10" TextWrapping="NoWrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Text="TextBox" FontFamily="Courier New" />
+
+    </Grid>
+</Window>

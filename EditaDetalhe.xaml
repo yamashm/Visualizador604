@@ -1,0 +1,14 @@
+﻿<Window x:Class="Visualizador604.EditaDetalhe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalhes Registro" Height="400" Width="600" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <DataGrid Name="dtgDetalhes" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="308" Margin="10,10,0,0" VerticalAlignment="Top" Width="574">
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Campo}" Header="Campo" />
+                <DataGridTextColumn Binding="{Binding Path=Valor}" Header="Valor" />
+            </DataGrid.Columns>-->
+        </DataGrid>
+        <Button Name="btnRegistraAlteracao" Content="Aplica Alteração" HorizontalAlignment="Left" Margin="420,345,0,0" VerticalAlignment="Top" Width="164" Click="btnRegistraAlteracao_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="Visualizador604.EditarCheque"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalhes Registro" Height="685.5" Width="1187.5" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <DataGrid Name="dtgDetalhes" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="603" Margin="10,10,0,0" VerticalAlignment="Top" Width="574">
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Campo}" Header="Campo" />
+                <DataGridTextColumn Binding="{Binding Path=Valor}" Header="Valor" />
+            </DataGrid.Columns>-->
+        </DataGrid>
+        <Image Name="imgChequeF" HorizontalAlignment="Left" Height="240" Margin="601,10,0,0" VerticalAlignment="Top" Width="574"/>
+        <Image Name="imgChequeV" HorizontalAlignment="Left" Height="240" Margin="598,315,0,0" VerticalAlignment="Top" Width="574"/>
+        <Button Name="btnRegistraAlteracao" Content="Registra Alteração" HorizontalAlignment="Left" Margin="1008,632,0,0" VerticalAlignment="Top" Width="164" Click="btnRegistraAlteracao_Click"/>
+        <Button Name="btnRemoveImagensAssinaturas" Content="Remover Imagens" HorizontalAlignment="Left" Margin="598,631,0,0" VerticalAlignment="Top" Width="164" Click="btnRemoveImagensAssinaturas_Click"/>
+        <Button x:Name="btnAlteraImagemFrente" Content="Alterar Imagem Frente" HorizontalAlignment="Left" Margin="1032,288,0,0" VerticalAlignment="Top" Width="143" Click="btnAlteraImagemFrente_Click"/>
+        <Button x:Name="btnSalvaImagemFrente" Content="Salvar Imagem Frente" HorizontalAlignment="Left" Margin="601,288,0,0" VerticalAlignment="Top" Width="143" Click="btnSalvarImagemFrente_Click"/>
+        <Button x:Name="btnAlteraImagemVerso" Content="Alterar Imagem Verso" HorizontalAlignment="Left" Margin="1032,591,0,0" VerticalAlignment="Top" Width="143" Click="btnAlteraImagemVerso_Click"/>
+        <Button x:Name="btnSalvaImagemVerso" Content="Salvar Imagem Verso" HorizontalAlignment="Left" Margin="601,591,0,0" VerticalAlignment="Top" Width="143" Click="btnSalvarImagemVerso_Click"/>
+        <Button x:Name="btnAlteraAssinaturaFrente" Content="Alterar Assinatura Frente" HorizontalAlignment="Left" Margin="884,288,0,0" VerticalAlignment="Top" Width="143" Click="btnAlteraAssinaturaFrente_Click"/>
+        <Button x:Name="btnAlteraAssinaturaVerso" Content="Alterar Assinatura Verso" HorizontalAlignment="Left" Margin="884,591,0,0" VerticalAlignment="Top" Width="143" Click="btnAlteraAssinaturaVersoe_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="601,255,0,0" TextWrapping="Wrap" Text="Assinatura Digital Frente: " VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="598,560,0,0" TextWrapping="Wrap" Text="Assinatura Digital Verso: " VerticalAlignment="Top"/>
+        <TextBlock Name="txb_NomeAssinaturaFrente" HorizontalAlignment="Left" Margin="741,255,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top"/>
+        <TextBlock Name="txb_NomeAssinaturaVerso" HorizontalAlignment="Left" Margin="735,560,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top"/>
+    </Grid>
+</Window>

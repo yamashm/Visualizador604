@@ -1,0 +1,13 @@
+﻿<Window x:Class="Visualizador604.Extraindo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Extraindo Imagens" Height="171" Width="361" ShowInTaskbar="True" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" PreviewKeyDown="Window_PreviewKeyDown">
+    <Grid>
+        <ProgressBar Name="pgb_Extraindo" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="333" Margin="10,109,0,0"/>
+
+        <TextBox Name="txbCaminho" HorizontalAlignment="Left" Height="21" Margin="10,20,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="333" FontFamily="Courier New" />
+        <Button Name="btnExtrair" FontWeight="Normal" FontSize="12" Content="Extrair" HorizontalAlignment="Left" Height="25" Margin="238,0,0,58" VerticalAlignment="Bottom" Width="105" Click="btnExtrair_Click"/>
+        <CheckBox Name="ckbImagens" Content="Imagens" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,67,0,0"/>
+        <CheckBox Name="ckbAssinaturas" Content="Assinaturas" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,67,0,0"/>
+    </Grid>
+</Window>
