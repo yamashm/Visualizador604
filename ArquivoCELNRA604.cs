@@ -17,6 +17,26 @@ namespace Visualizador604
         public string VERSAO_ARQUIVO { get; set; }
         public string INDICADOR_REMESSA { get; set; }
         public string DATA_MOVIMENTO { get; set; }
+
+        public List<byte[]> binLinhas()
+        {
+            List<byte[]> binArquivoSaida = new List<byte[]>();
+
+            binArquivoSaida.Add(HEADER.GeraBinario());
+
+            foreach (LoteCEL604 lote in LOTES)
+            {
+                foreach (Cheque c in lote.CHEQUES)
+                {
+                    binArquivoSaida.AddRange(c.GeraBinarios());
+                }
+                binArquivoSaida.Add(lote.FECHAMENTO.GeraBinario());
+            }
+
+            binArquivoSaida.Add(TRAILER.GeraBinario());
+
+            return binArquivoSaida;
+        }
     }
 
     public class HeaderCEL604 : DetalheArquivoCompe

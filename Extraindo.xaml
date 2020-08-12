@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Visualizador604.Extraindo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Extraindo Imagens" Height="171" Width="361" ShowInTaskbar="True" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Extraindo Imagens" Height="171" Width="361" ShowInTaskbar="True" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
     <Grid>
         <ProgressBar Name="pgb_Extraindo" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="333" Margin="10,109,0,0"/>
 

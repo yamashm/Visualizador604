@@ -495,6 +495,21 @@ namespace Visualizador604
 
         private void MenuItemSalvar_Click(object sender, RoutedEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            if (sfd.ShowDialog() == true)
+            {
+                BinaryWriter bw = new BinaryWriter(File.Open(sfd.FileName, FileMode.OpenOrCreate));
+
+                foreach (byte[] b in _registros604.binLinhas())
+                {
+                    bw.Write(b);
+                }
+
+                bw.Flush();
+                bw.Close();
+            }
+
             //string caminho = @"C:\Projetos15\Teste.rec";
 
             //BinaryWriter bw = new BinaryWriter(File.Open(caminho, FileMode.OpenOrCreate));
@@ -663,6 +678,10 @@ namespace Visualizador604
 
                     linhaASCII = Encoding.UTF8.GetString(Tabela.ConverteEBCDICParaASCII(binDados));
 
+                    //string teste;
+                    //if(linha == 419)
+                    //     teste = "TESTE";
+
                     if (linhaASCII.Substring(0, 47) == new string('0',47))
                     {
                         _registros604.HEADER = new HeaderCEL604(linhaASCII, linha, quebra, comprimentoTotalLinha, new SolidColorBrush(Colors.DarkBlue));
@@ -820,10 +839,12 @@ namespace Visualizador604
         private void PreencheListaSaidaArquivoCEL604()
         {
             ltbSaida.Items.Clear();
+            ltbLinha.Items.Clear();
 
             int quantidadeCheques = 0;
 
             ltbSaida.Items.Add(_registros604.HEADER);
+            ltbLinha.Items.Add(_registros604.HEADER.NUMERO_LINHA);
 
             foreach (LoteCEL604 lote in _registros604.LOTES)
             {
@@ -832,6 +853,7 @@ namespace Visualizador604
                     foreach (DetalheArquivoCompe d in cheque.DADOS_FRENTE)
                     {
                         ltbSaida.Items.Add(d);
+                        ltbLinha.Items.Add(d.NUMERO_LINHA);
                     }
 
                     if (cheque.DADOS_VERSO != null)
@@ -839,15 +861,18 @@ namespace Visualizador604
                         foreach (DetalheArquivoCompe d in cheque.DADOS_VERSO)
                         {
                             ltbSaida.Items.Add(d);
+                            ltbLinha.Items.Add(d.NUMERO_LINHA);
                         }
                     }
 
                     quantidadeCheques++;
                 }
                 ltbSaida.Items.Add(lote.FECHAMENTO);
+                ltbLinha.Items.Add(lote.FECHAMENTO.NUMERO_LINHA);
             }
 
             ltbSaida.Items.Add(_registros604.TRAILER);
+            ltbLinha.Items.Add(_registros604.TRAILER.NUMERO_LINHA);
 
             foreach (DetalheArquivoCompe d in _registros604.LINHASERRO)
             {
@@ -1805,6 +1830,8 @@ namespace Visualizador604
 
         private void NovoArquivoCEL604()
         {
+            _tipoArquivoAberto = 1;
+
             _registros604 = new ArquivoCELNRA604();
 
             _registros604.LOTES = new List<LoteCEL604>();
@@ -1842,6 +1869,7 @@ namespace Visualizador604
 
             _registros604.HEADER.RegeraLinha();
             _registros604.TRAILER.RegeraLinha();
+            _registros604.LINHASERRO = new List<LinhaErro>();
 
             ConfiguraTela(true, _registros604.NOME_ARQUIVO);
             PreencheListaSaidaArquivoCEL604();
@@ -1936,6 +1964,32 @@ namespace Visualizador604
             AbreArquivoEBCDIC(_caminhoarquivoaberto);
             ConfiguraTela(true, _caminhoarquivoaberto);
             PreencheListaSaidaArquivoEBCDIC();
+        }
+
+        private void ltbSaida_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(ltbSaida, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ltbLinha, typeof(ScrollViewer)) as ScrollViewer;
+            _listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
+        }
+
+        public Visual GetDescendantByType(Visual element, Type type)
+        {
+            if (element == null) return null;
+            if (element.GetType() == type) return element;
+            Visual foundElement = null;
+            if (element is FrameworkElement)
+            {
+                (element as FrameworkElement).ApplyTemplate();
+            }
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
+            {
+                Visual visual = VisualTreeHelper.GetChild(element, i) as Visual;
+                foundElement = GetDescendantByType(visual, type);
+                if (foundElement != null)
+                    break;
+            }
+            return foundElement;
         }
     }
 }

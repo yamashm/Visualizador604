@@ -129,6 +129,15 @@ namespace Visualizador604
                 Text = sb.ToString();
             }
         }
+
+        public byte[] GeraBinario()
+        {
+            byte[] bin = new byte[TAMANHO_TOTAL_LINHA];
+
+            Array.Copy(Util.ConverteASCIIParaEBCDIC(System.Text.ASCIIEncoding.ASCII.GetBytes(Text)), bin, QUEBRA);
+
+            return bin;
+        }
     }
 
     public class LinhaErro : DetalheArquivoCompe

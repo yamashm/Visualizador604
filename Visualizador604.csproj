@@ -102,6 +102,7 @@
     <Compile Include="ValoresLotes.xaml.cs">
       <DependentUpon>ValoresLotes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XMLCheque.cs" />
     <Page Include="Autenticacao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

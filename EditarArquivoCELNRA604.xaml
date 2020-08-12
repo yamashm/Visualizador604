@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Visualizador604.EditarArquivoCELNRA604"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Editar Arquivo CEL NRA 604" Height="676.487" Width="810" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" PreviewKeyDown="Window_PreviewKeyDown" Closing="Window_Closing">
+        Title="Editar Arquivo CEL NRA 604" Height="676.487" Width="810" ShowInTaskbar="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" PreviewKeyDown="Window_PreviewKeyDown" Closing="Window_Closing">
     <Grid>
         <GroupBox Name="gpb_Geral" Header="Dados Gerais" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="584" Width="258">
             <Grid>

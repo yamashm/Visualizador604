@@ -171,7 +171,7 @@ namespace Visualizador604
             {
                 if (_cheque.ASSINATURA_FRENTE == null)
                 {
-                    MessageBox.Show("Não tem assinatur da frente");
+                    MessageBox.Show("Não tem assinatura da frente");
                     return;
                 }
                 if (_cheque.IMAGEM_VERSO == null)
@@ -243,7 +243,7 @@ namespace Visualizador604
                 tamanhoTotal = _cheque.IMAGEM_FRENTE.Length + _cheque.ASSINATURA_FRENTE.Length;
                 restoLinha = _detalheF.TAMANHO_TOTAL_LINHA - _detalheF.QUEBRA;
 
-                while (tamanhoTotal >= 0)
+                while (tamanhoTotal > 0)
                 {
                     totalRegistroImagem++;
                     tamanhoTotal = tamanhoTotal - restoLinha;
@@ -280,7 +280,7 @@ namespace Visualizador604
                     totalRegistroImagem = 0;
                     tamanhoTotal = _cheque.IMAGEM_VERSO.Length + _cheque.ASSINATURA_VERSO.Length;
 
-                    while (tamanhoTotal >= 0)
+                    while (tamanhoTotal > 0)
                     {
                         totalRegistroImagem++;
                         tamanhoTotal = tamanhoTotal - restoLinha;
@@ -326,18 +326,7 @@ namespace Visualizador604
             {
                 _imagemFrente = Util.LeBinario(ofd.FileName);
 
-                try
-                {
-                    imgChequeF.Source = Imaging.CreateBitmapSourceFromHBitmap(
-                         BitmapFromByteArray(_imagemFrente).GetHbitmap(),
-                         IntPtr.Zero,
-                         Int32Rect.Empty,
-                         BitmapSizeOptions.FromEmptyOptions());
-                }
-                catch(Exception erro)
-                {
-                    MessageBox.Show(erro.Message);
-                }
+                mostraImagem(imgChequeF, _imagemFrente);
             }
         }
 
@@ -349,18 +338,23 @@ namespace Visualizador604
             {
                 _imagemVerso = Util.LeBinario(ofd.FileName);
 
-                try
-                {
-                    imgChequeV.Source = Imaging.CreateBitmapSourceFromHBitmap(
-                         BitmapFromByteArray(_imagemVerso).GetHbitmap(),
-                         IntPtr.Zero,
-                         Int32Rect.Empty,
-                         BitmapSizeOptions.FromEmptyOptions());
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show(erro.Message); 
-                }
+                mostraImagem(imgChequeV, _imagemVerso);
+            }
+        }
+
+        private void mostraImagem(System.Windows.Controls.Image imageControl, byte[] imagem)
+        {
+            try
+            {
+                imageControl.Source = Imaging.CreateBitmapSourceFromHBitmap(
+                     BitmapFromByteArray(imagem).GetHbitmap(),
+                     IntPtr.Zero,
+                     Int32Rect.Empty,
+                     BitmapSizeOptions.FromEmptyOptions());
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
             }
         }
 
@@ -428,6 +422,48 @@ namespace Visualizador604
                 bw.Flush();
                 bw.Close();
             }
+        }
+
+        private void btnLerXML_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+
+            if (ofd.ShowDialog() == true)
+            {
+                string cmc7;
+
+                if (XMLCheque.Le(ofd.FileName, out cmc7, ref _imagemFrente, ref _imagemVerso))
+                {
+                    MemoryStream ms;
+
+                    if (_imagemFrente.Length > 0)
+                    {
+                        mostraImagem(imgChequeF, _imagemFrente);
+                    }
+
+                    if (_imagemVerso.Length > 0)
+                    {
+                        mostraImagem(imgChequeV, _imagemVerso);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível ler o arquivo", "Erro");
+                }
+            }
+        }
+
+        private void btnSalvaAssinaturaFrente_Click(object sender, RoutedEventArgs e)
+        {
+            SalvaArquivo(_cheque.ASSINATURA_FRENTE, _cheque.CMC7 + "_F.P7S");
+        }
+
+        private void btnSalvaAssinaturaVerso_Click(object sender, RoutedEventArgs e)
+        {
+            SalvaArquivo(_cheque.ASSINATURA_VERSO, _cheque.CMC7 + "_V.P7S");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Visualizador604.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Visualizador de Arquivos 604" MinHeight="500" MinWidth="793" Height="505" Width="793" WindowState="Maximized" PreviewKeyDown="Window_PreviewKeyDown" >
+        Title="Visualizador de Arquivos 604" MinHeight="500" MinWidth="793" Height="505" Width="793" WindowState="Normal" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown" >
     <Grid>
         <Menu Height="26" VerticalAlignment="Top" Margin="0,0,0,0">
             <MenuItem Header="_Arquivo">
@@ -14,6 +14,7 @@
                 <!--<MenuItem Header="Salvar Arquivo CEL/NRA" Click="MenuItemSalvar_Click"></MenuItem>-->
                 <Separator />
                 <MenuItem Header="Novo Arquivo" Click="MenuItemNovo_Click"></MenuItem>
+                <MenuItem Header="Salvar Arquivo" Click="MenuItemSalvar_Click"></MenuItem>
                 <Separator />
                 <MenuItem Name="MenuItemRegerar" Header="Regerar" Click="MenuItemRegerar_Click"></MenuItem>
                 <Separator />
@@ -37,7 +38,7 @@
                 <MenuItem Header="Verificar" Name="MenuVerificar" Click="MenuVerificar_Click"></MenuItem>
             </MenuItem>-->
         </Menu>
-        <ListBox Name="ltbSaida" Margin="10,36,10,120" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionMode="Extended" SelectionChanged="ltbSaida_SelectionChanged" MouseDoubleClick="ltbSaida_MouseDoubleClick"/>
+        <ListBox Name="ltbSaida" Margin="51,36,10,120" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionMode="Extended" SelectionChanged="ltbSaida_SelectionChanged" MouseDoubleClick="ltbSaida_MouseDoubleClick" BorderThickness="0,1,1,1" ScrollViewer.ScrollChanged ="ltbSaida_ScrollChanged"/>
         <GroupBox Name="gpbCarregando" Header="Carregando" Height="101" Margin="10,0,0,10" VerticalAlignment="Bottom" FontWeight ="Bold" FontSize="16">
             <Grid>
                 <ProgressBar Name="pgbCarregando" Height="30" Margin="10,0,10,0">
@@ -79,6 +80,7 @@
                 <Button Name="btnAtualiza" FontWeight="Normal" FontSize="12" Content="Atualizar" HorizontalAlignment="Left" Height="25" Margin="638,0,0,40" VerticalAlignment="Bottom" Width="105" Click="btnAtualizar_Click"/>
             </Grid>
         </GroupBox>
+        <ListBox x:Name="ltbLinha" Margin="10,36,734,120" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionMode="Extended" Width="40" HorizontalAlignment="Left" BorderThickness="1,1,0,1" FontSize="14" FontFamily="Courier New"/>
 
         <!--<GroupBox Name="gpbRegistro" Header="" HorizontalAlignment="Right" Height="101" Margin="0,0,10,10" VerticalAlignment="Bottom" FontWeight ="Bold" FontSize="16" Width="324" >
             <Grid>
