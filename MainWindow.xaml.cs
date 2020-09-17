@@ -748,10 +748,10 @@ namespace Visualizador604
 
                             cheque.NUMERO = Convert.ToInt32(detalhe.CAMPOS[6].CONTEUDO);
 
-                            lote.NUMERO = Convert.ToInt32(detalhe.CAMPOS[19].CONTEUDO);
+                            lote.NUMERO = Convert.ToInt32(detalhe.CAMPOS[20].CONTEUDO);
                         }
 
-                        if (detalhe.CAMPOS[32].CONTEUDO == "V")
+                        if (detalhe.CAMPOS[33].CONTEUDO == "V")
                         {
                             detalhe.Foreground = new SolidColorBrush(Colors.DarkCyan);
                             cheque.DADOS_VERSO.Add(detalhe);
@@ -760,17 +760,17 @@ namespace Visualizador604
                         else
                         {
                             detalhe.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
-                            cheque.DADOS_FRENTE.Add(detalhe);
+                            cheque.DADOS_FRENTE.Add(detalhe); 
                             detalhe.VERSO = false;
                         }
 
-                        byte totalRegistrosImagem = Convert.ToByte(detalhe.CAMPOS[28].CONTEUDO);
+                        byte totalRegistrosImagem = Convert.ToByte(detalhe.CAMPOS[29].CONTEUDO);
 
                         if (totalRegistrosImagem > 0)
                         {
-                            byte sequencialImagem = Convert.ToByte(detalhe.CAMPOS[29].CONTEUDO);
-                            long tamanhoImagem = Convert.ToInt64(detalhe.CAMPOS[30].CONTEUDO);
-                            long tamanhoAssinatura = Convert.ToInt64(detalhe.CAMPOS[31].CONTEUDO);
+                            byte sequencialImagem = Convert.ToByte(detalhe.CAMPOS[30].CONTEUDO);
+                            long tamanhoImagem = Convert.ToInt64(detalhe.CAMPOS[31].CONTEUDO);
+                            long tamanhoAssinatura = Convert.ToInt64(detalhe.CAMPOS[32].CONTEUDO);
                             long tamanhoTotal = tamanhoImagem + tamanhoAssinatura;
                             long tamanhoDetalheImAss = 0;
 
